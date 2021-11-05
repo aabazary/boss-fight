@@ -21,6 +21,9 @@ export default function GatheringContainer() {
     if (currentPage === 'BossBattle') {
       return <BossBattle />;
     }
+    if (currentPage === 'MinionBattle') {
+      return <MinionBattle />;
+    }
     if (currentPage === 'Puzzle') {
         return <Puzzle />;
       }

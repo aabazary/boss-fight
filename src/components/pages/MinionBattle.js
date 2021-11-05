@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-const BossBattle = () => {
+const MinionBattle = () => {
   const [userAbility, setUserAbility] = useState(null)
-  const [bossAbility, setBossAbility] = useState(null)
+  const [minionAbility, setMinionAbility] = useState(null)
   const [userHealth, setUserHealth] = useState(20)
-  const [bossHealth, setBossHealth] = useState(100)
+  const [minionHealth, setMinionHealth] = useState(10)
   const [turnResult, setTurnResult] = useState(null)
   const [result, setResult] = useState('Battle In Progress')
   const [gameOver, setGameOver] = useState(false)
@@ -12,12 +12,12 @@ const BossBattle = () => {
 
   const handleClick = (value) => {
     setUserAbility(value)    
-    generateBossAbility()
+    generateMinionAbility()
   }
 
-  const generateBossAbility = () => {
+  const generateMinionAbility = () => {
     const randomChoice = choices[Math.floor(Math.random() * choices.length)]
-    setBossAbility(randomChoice)
+    setMinionAbility(randomChoice)
   }
 
   const reset = () => {
@@ -25,25 +25,25 @@ const BossBattle = () => {
   }
 
   useEffect(() => {
-    const comboMoves = userAbility + bossAbility
+    const comboMoves = userAbility + minionAbility
     //If the User chooses correctly
-    if (userHealth > 0 && bossHealth > 0) {
+    if (userHealth > 0 && minionHealth > 0) {
       if (comboMoves === 'NovaBlast' || comboMoves === 'BoltNova' || comboMoves === 'BlastBolt') {
-        const bossDamaged = bossHealth - 5
-        setBossHealth(bossDamaged)
+        const minionDamaged = minionHealth - 5
+        setMinionHealth(minionDamaged)
         setTurnResult('Your spell has Landed!')
-        if (bossDamaged === 0){
-          setResult('You have Defeated the Dragon!')
+        if (minionDamaged <= 0){
+          setResult('You have Defeated the Minion!')
           const gameOff = true
           setGameOver(gameOff)
         }
       }
       //If the User chooses incorrectly
       if (comboMoves === 'BlastNova' || comboMoves === 'NovaBolt' || comboMoves === 'BoltBlast') {
-        const userDamaged = userHealth - 20
+        const userDamaged = userHealth - 5
         setUserHealth(userDamaged)
-        setTurnResult('Your Spell Missed, The Dragon Breathes Fire on you!')
-        if (userDamaged === 0) {
+        setTurnResult('Your Spell Missed, The Minion attacks you!')
+        if (userDamaged <= 0) {
           setResult('You have been Defeated')
           const gameOff = true
           setGameOver(gameOff)
@@ -51,17 +51,24 @@ const BossBattle = () => {
       }
       //If its a tie
       if (comboMoves === 'BlastBlast' || comboMoves === 'BoltBolt' || comboMoves === 'NovaNova') {
-        setTurnResult('You have missed, the dragon Laughs')
+        const minionDamaged = minionHealth - 2.5
+        setMinionHealth(minionDamaged)
+        setTurnResult('Your spell was not very effective!')
+        if (minionDamaged <= 0){
+          setResult('You have Defeated the Minion!')
+          const gameOff = true
+          setGameOver(gameOff)
+        }
       }
     }
-  }, [bossAbility, userAbility])
+  }, [minionAbility, userAbility])
 
   return (
     <div className="App">
-      <h1 className='heading'>Dragon Battle</h1>
+      <h1 className='heading'>Minion Battle</h1>
       <div className='score'>
         <h1>Health: {userHealth}</h1>
-        <h1>Dragon Health: {bossHealth}</h1>
+        <h1>Minion Health: {minionHealth}</h1>
       </div>
 
       <div className='choice'>
@@ -69,7 +76,7 @@ const BossBattle = () => {
           <img className='user-hand' src={`../images/${userAbility}.png`} alt=''></img>
         </div>
         <div className='choice-computer'>
-          <img className='computer-hand' src={`../images/${bossAbility}.png`} alt=''></img>
+          <img className='computer-hand' src={`../images/${minionAbility}.png`} alt=''></img>
         </div>
       </div>
       
@@ -95,4 +102,4 @@ const BossBattle = () => {
   )
 }
 
-export default BossBattle
+export default MinionBattle
