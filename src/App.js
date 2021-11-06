@@ -15,8 +15,8 @@ function App() {
       <Navbar />
       <Switch>
         <Route path='/' exact component={Home} />
-        {/* <Route path='/MinionBattle' component={MinionBattle} />
-        <Route path='/BossBattle' component={BossBattle} /> */}
+        <Route path='/MinionBattle' component={MinionBattle} />
+        <Route path='/BossBattle' component={BossBattle} />
         <Route path='/Fighting' component={Fighting} />
         <Route path='/Gathering' component={Gathering} />
         <Route path='/Puzzle' component={Puzzle} />
