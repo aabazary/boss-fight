@@ -7,10 +7,7 @@ const Navbar= () =>{
       <Link to="/">Home</Link>
     </li>
     <li>
-      <Link to="/BossBattle">Boss Battle</Link>
-    </li>
-    <li>
-      <Link to="/MinionBattle">Minion Battle</Link>
+      <Link to="/Fighting">Fighting</Link>
     </li>
     <li>
       <Link to="/Gathering">Gathering</Link>

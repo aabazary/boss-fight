@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import BossBattle from './pages/BossBattle';
 import Gathering from './pages/Gathering';
 import Puzzle from './pages/Puzzle';
+import Fighting from './pages/Fighting';
+import MinionBattle from './pages/MinionBattle';
 import Store from './pages/Store';
 
 export default function GatheringContainer() {
@@ -18,12 +20,16 @@ export default function GatheringContainer() {
     if (currentPage === 'Gathering') {
       return <Gathering />;
     }
-    if (currentPage === 'BossBattle') {
-      return <BossBattle />;
+    // if (currentPage === 'BossBattle') {
+    //   return <BossBattle />;
+    // }
+    if (currentPage === 'Fighting') {
+      return <Fighting />;
     }
-    if (currentPage === 'MinionBattle') {
-      return <MinionBattle />;
-    }
+    
+    // if (currentPage === 'MinionBattle') {
+    //   return <MinionBattle />;
+    // }
     if (currentPage === 'Puzzle') {
         return <Puzzle />;
       }
