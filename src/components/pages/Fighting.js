@@ -12,7 +12,7 @@ const Fighting = () =>{
         </button>
         <button>
        <Link to="/MinionBattle">Minion Battle</Link>
-          </button>
+        </button>
     </div>
   );
 }

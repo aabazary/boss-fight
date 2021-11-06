@@ -1,5 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
+const successSentences = ['Your Spell has Landed, and it was Supper Effective!', 'A Remarkable shot, The minion has been hurt greatly']
+const failureSentences = ['Your Spell Missed, The minion attacks you!', 'Your spell was not very effective, and you have been punished']
+const tieSenetences = ['Your spell slightly landed, dealing ', '']
+
+function showRandomTieSentence() {
+  const randomNumber = Math.floor(Math.random() * tieSenetences.length)
+  return tieSenetences[randomNumber]
+}
+
+function showRandomSuccessSentence() {
+  const randomNumber = Math.floor(Math.random() * successSentences.length)
+  return successSentences[randomNumber]
+}
+function showRandomFailureSentence() {
+  const randomNumber = Math.floor(Math.random() * failureSentences.length)
+  return failureSentences[randomNumber]
+}
+
 const MinionBattle = () => {
   const [userAbility, setUserAbility] = useState(null)
   const [minionAbility, setMinionAbility] = useState(null)
@@ -31,7 +49,7 @@ const MinionBattle = () => {
       if (comboMoves === 'NovaBlast' || comboMoves === 'BoltNova' || comboMoves === 'BlastBolt') {
         const minionDamaged = minionHealth - 5
         setMinionHealth(minionDamaged)
-        setTurnResult('Your spell has Landed!')
+        setTurnResult(showRandomSuccessSentence())
         if (minionDamaged <= 0){
           setResult('You have Defeated the Minion!')
           const gameOff = true
@@ -42,7 +60,7 @@ const MinionBattle = () => {
       if (comboMoves === 'BlastNova' || comboMoves === 'NovaBolt' || comboMoves === 'BoltBlast') {
         const userDamaged = userHealth - 5
         setUserHealth(userDamaged)
-        setTurnResult('Your Spell Missed, The Minion attacks you!')
+        setTurnResult(showRandomFailureSentence())
         if (userDamaged <= 0) {
           setResult('You have been Defeated')
           const gameOff = true
@@ -53,7 +71,7 @@ const MinionBattle = () => {
       if (comboMoves === 'BlastBlast' || comboMoves === 'BoltBolt' || comboMoves === 'NovaNova') {
         const minionDamaged = minionHealth - 2.5
         setMinionHealth(minionDamaged)
-        setTurnResult('Your spell was not very effective!')
+        setTurnResult(showRandomTieSentence())
         if (minionDamaged <= 0){
           setResult('You have Defeated the Minion!')
           const gameOff = true

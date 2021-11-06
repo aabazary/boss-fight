@@ -1,5 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
+const successSentences = ['You have damaged the Boss', 'A Remarkable shot']
+const failureSentences = ['Your Spell Missed!', 'Your spell was not very effective']
+const tieSenetences = ['Your spell slightly landed, dealing ', '']
+
+function showRandomTieSentence() {
+  const randomNumber = Math.floor(Math.random() * tieSenetences.length)
+  return tieSenetences[randomNumber]
+}
+
+function showRandomSuccessSentence() {
+  const randomNumber = Math.floor(Math.random() * successSentences.length)
+  return successSentences[randomNumber]
+}
+function showRandomFailureSentence() {
+  const randomNumber = Math.floor(Math.random() * failureSentences.length)
+  return failureSentences[randomNumber]
+}
+
 const BossBattle = () => {
   const [userAbility, setUserAbility] = useState(null)
   const [bossAbility, setBossAbility] = useState(null)
@@ -31,7 +49,7 @@ const BossBattle = () => {
       if (comboMoves === 'NovaBlast' || comboMoves === 'BoltNova' || comboMoves === 'BlastBolt') {
         const bossDamaged = bossHealth - 5
         setBossHealth(bossDamaged)
-        setTurnResult('Your spell has Landed!')
+        setTurnResult(showRandomSuccessSentence())
         if (bossDamaged === 0){
           setResult('You have Defeated the Dragon!')
           const gameOff = true
@@ -42,7 +60,7 @@ const BossBattle = () => {
       if (comboMoves === 'BlastNova' || comboMoves === 'NovaBolt' || comboMoves === 'BoltBlast') {
         const userDamaged = userHealth - 20
         setUserHealth(userDamaged)
-        setTurnResult('Your Spell Missed, The Dragon Breathes Fire on you!')
+        setTurnResult(showRandomFailureSentence)
         if (userDamaged === 0) {
           setResult('You have been Defeated')
           const gameOff = true
@@ -51,7 +69,7 @@ const BossBattle = () => {
       }
       //If its a tie
       if (comboMoves === 'BlastBlast' || comboMoves === 'BoltBolt' || comboMoves === 'NovaNova') {
-        setTurnResult('You have missed, the dragon Laughs')
+        setTurnResult(showRandomTieSentence)
       }
     }
   }, [bossAbility, userAbility])
